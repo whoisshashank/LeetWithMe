@@ -1,0 +1,24 @@
+class Solution {
+    public char kthCharacter(int k) {
+        String word = "a";
+        boolean t = false;
+
+        for (int j = 0; !t; j++) {
+            String s = word;
+
+            for (int i = 0; i < word.length(); i++) {
+                char a = (char)(word.charAt(i) + 1);
+                s = s + a;
+            }
+
+            if (s.length() >= k) {
+                t = true;
+                return s.charAt(k - 1);
+            }
+
+            word = s;
+        }
+
+        return 0;
+    }
+}
