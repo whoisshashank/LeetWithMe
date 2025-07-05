@@ -1,0 +1,42 @@
+public class Solution {
+    public long repairCars(int[] a, int K) {
+        int e = a.length;
+
+        double sumInvSqrt = 0.0;
+        for (int i = 0; i < e; i++) {
+            sumInvSqrt += 1.0 / Math.sqrt(a[i]);
+        }
+        double c = K / sumInvSqrt;
+
+        int[] n = new int[e];
+        double sum = 0.0;
+        for (int i = 0; i < e; i++) {
+            n[i] = (int) Math.floor(c / Math.sqrt(a[i]));
+            sum += n[i] * Math.sqrt(a[i]);
+        }
+
+        while (Math.round(sum) < K) {
+            int bestIdx = -1;
+            double minDelta = Double.MAX_VALUE;
+
+            for (int i = 0; i < e; i++) {
+                double deltaCost = 2 * n[i] + 1;
+                double deltaConstraint = Math.sqrt(a[i]);
+                double delta = deltaCost / deltaConstraint;
+                if (delta < minDelta) {
+                    minDelta = delta;
+                    bestIdx = i;
+                }
+            }
+            n[bestIdx]++;
+            sum += Math.sqrt(a[bestIdx]);
+        }
+
+        long minCost = 0;
+        for (int i = 0; i < e; i++) {
+            minCost += (long) n[i] * n[i];
+        }
+
+        return minCost;
+    }
+}
