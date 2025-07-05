@@ -1,0 +1,27 @@
+Longest Substring Solution 
+
+class strrr(String s)
+{
+
+int l = s.length();
+int max=0;
+
+for( int i=0; i<l; i++)
+ {
+    String sub;
+     int count=0;
+     for(int j=i;j<l; j++)
+       {
+          if(!sub.contains(s.charAt(j))
+             {
+                sub+= s.charAt(j);
+                 count++;
+             }
+           else
+                break;
+        }
+       if(count>max)
+          max=count;
+ }
+return max;
+}
